@@ -1,7 +1,9 @@
 import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { createServer } from "./server";
+// Lazily import the local express server inside the plugin to avoid initializing
+// server-side modules (and database connections) during Vite config evaluation.
+// This prevents startup failures when DATABASE_URL is not set.
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
