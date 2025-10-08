@@ -15,7 +15,7 @@ import {
 import { useFloatingModal } from "@/components/FloatingModals";
 
 export default function DentalEmergency() {
-  const [openId, setOpenId] = useState<string | null>(null);
+  const { openModal } = useFloatingModal();
 
   const topics = [
     { id: "pain", title: "ألم الأسنان الحاد", path: "/emergency/pain-management", icon: Activity, color: "red" as const },
@@ -59,7 +59,7 @@ export default function DentalEmergency() {
           "أمسك السن من الجزء الظاهر (التاج) وليس الجذر.",
           "إذا اتسخ، اشطفه سريعًا بمحلول ملحي دون فرك الجذر.",
           "حاول إعادته إلى مكانه برفق واثبته بعضة خفيفة على شاش نظيف.",
-          "إذا تعذر، احفظه في حليب أو داخل الفم بين الخد واللثة (إن لم يكن هناك خطر ابتلاع).",
+          "إذا تعذر، ا��فظه في حليب أو داخل الفم بين الخد واللثة (إن لم يكن هناك خطر ابتلاع).",
           "اتجه للطبيب فورًا خلال 30 دقيقة.",
         ],
         caution: "لا تُعيد أسنان الأطفال اللبنية مكانها.",
