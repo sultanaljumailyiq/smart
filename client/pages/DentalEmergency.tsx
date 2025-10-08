@@ -32,7 +32,7 @@ export default function DentalEmergency() {
           "اشطف الفم بالماء الدافئ.",
           "استخدم خيط الأسنان لإزالة أي بقايا طعام عالقة.",
           "ضع كمادة باردة على الخد لمدة 10 دقائق لتخفيف التورم.",
-          "يمكن تناول مسكن مناسب مثل الإيبوبروفين إذا لم تكن لديك موانع طبية.",
+          "يمكن تناول م��كن مناسب مثل الإيبوبروفين إذا لم تكن لديك موانع طبية.",
         ],
         caution: "تجنب وضع الأسبرين مباشرة على اللثة أو السن.",
         tel: "0790-123-4567",
@@ -58,8 +58,8 @@ export default function DentalEmergency() {
         items: [
           "أمسك السن من الجزء الظاهر (التاج) وليس الجذر.",
           "إذا اتسخ، اشطفه سريعًا بمحلول ملحي دون فرك الجذر.",
-          "حاول إعادته إلى مكانه برفق واثبته بعضة خفيفة على شاش نظيف.",
-          "إذا تعذر، ا��فظه في حليب أو داخل الفم بين الخد واللثة (إن لم يكن هناك خطر ابتلاع).",
+          "حاول إعادته إلى مكانه بر��ق واثبته بعضة خفيفة على شاش نظيف.",
+          "إذا تعذر، احفظه في حليب أو داخل الفم بين الخد واللثة (إن لم يكن هناك خطر ابتلاع).",
           "اتجه للطبيب فورًا خلال 30 دقيقة.",
         ],
         caution: "لا تُعيد أسنان الأطفال اللبنية مكانها.",
@@ -121,50 +121,55 @@ export default function DentalEmergency() {
             const cls = colorClasses(t.color);
             const isOpen = openId === t.id;
             return (
-              <div key={t.id} className={`bg-white rounded-xl shadow-sm border transition-all ${isOpen ? `ring-2 ${cls.ring}` : "hover:shadow-md"}`}>
+              <div key={t.id} className={`bg-white rounded-xl shadow-sm border transition-all hover:shadow-md`}>
                 <button
                   type="button"
-                  onClick={() => setOpenId(isOpen ? null : t.id)}
+                  onClick={() => {
+                    const groups = steps[t.id] || [];
+                    openModal({
+                      type: "info",
+                      title: t.title,
+                      content: (
+                        <div className="space-y-4">
+                          {groups.map((group, gIdx) => (
+                            <div key={gIdx}>
+                              <div className="text-sm font-semibold mb-2">{group.title}</div>
+                              <ol className="list-decimal list-inside space-y-2 text-gray-800">
+                                {group.items.map((it, i) => (
+                                  <li key={i} className="text-[14px]">{it}</li>
+                                ))}
+                              </ol>
+                              {group.caution && (
+                                <div className="mt-2 text-red-700 text-sm">تنبيه: {group.caution}</div>
+                              )}
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {group.tel && (
+                                  <a href={`tel:${group.tel}`} className={`px-3 py-1.5 rounded-full text-white text-xs font-semibold ${cls.pill}`}>اتصال فوري</a>
+                                )}
+                                {group.more && (
+                                  <Link to={group.more} className="px-3 py-1.5 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold hover:bg-gray-200">قراءة الدليل</Link>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                          <div className="mt-4 text-sm text-gray-600">
+                            لمزيد من التفاصيل يمكن الاطلاع على الدليل الكامل أو التواصل مع مراكز الطوارئ المحلية.
+                          </div>
+                        </div>
+                      ),
+                      size: "md",
+                    });
+                  }}
                   className="w-full text-start p-3"
-                  aria-expanded={isOpen}
                 >
                   <div className={`w-8 h-8 rounded-lg ${cls.bg} ${cls.text} flex items-center justify-center mb-2`}>
                     <Icon className="w-4 h-4" />
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <div className="text-sm font-semibold text-gray-900">{t.title}</div>
-                    <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`} />
+                    <ChevronDown className={`w-4 h-4 text-gray-500`} />
                   </div>
                 </button>
-
-                {isOpen && (
-                  <div className="px-3 pb-3 pt-0 border-t bg-gray-50/60 animate-slide-in">
-                    {steps[t.id]?.map((group, idx) => (
-                      <div key={idx} className="py-3 first:pt-3 last:pb-0">
-                        <div className="text-xs font-bold text-gray-700 mb-2">{group.title}</div>
-                        <ol className="space-y-2">
-                          {group.items.map((it, i) => (
-                            <li key={i} className="flex items-start gap-2 text-[13px] text-gray-800">
-                              <CheckCircle2 className={`w-4 h-4 mt-0.5 ${cls.text}`} />
-                              <span>{it}</span>
-                            </li>
-                          ))}
-                        </ol>
-                        {group.caution && (
-                          <div className="mt-3 text-[12px] text-red-700 bg-red-50 border border-red-100 rounded-lg px-3 py-2">تنبيه: {group.caution}</div>
-                        )}
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {group.tel && (
-                            <a href={`tel:${group.tel}`} className={`px-3 py-1.5 rounded-full text-white text-xs font-semibold ${cls.pill}`}>اتصال فوري</a>
-                          )}
-                          {group.more && (
-                            <Link to={group.more} className="px-3 py-1.5 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold hover:bg-gray-200">قراءة الدليل</Link>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
             );
           })}
