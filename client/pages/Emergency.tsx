@@ -174,17 +174,6 @@ export default function Emergency() {
           </div>
 
 
-          {/* Nearby Hospitals */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-              <Hospital className="w-6 h-6 text-blue-600" />
-              المستشفيات ا��قريبة
-            </h2>
-            <div className="flex flex-row gap-4 overflow-x-auto md:grid md:grid-cols-3 md:gap-6 snap-x snap-mandatory -mx-4 px-4 pb-6">
-              {nearbyHospitals.map((hospital, index) => <UnifiedPlaceCard key={index} name={hospital.name} distance={hospital.distance} address={hospital.address} phone={hospital.phone} badge={hospital.hasEmergency ? "طوارئ" : undefined} />)}
-            </div>
-          </div>
-
           {/* Emergency Tips */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
