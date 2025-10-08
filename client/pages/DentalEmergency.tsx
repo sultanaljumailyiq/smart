@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   ChevronDown,
 } from "lucide-react";
+import { useFloatingModal } from "@/components/FloatingModals";
 
 export default function DentalEmergency() {
   const [openId, setOpenId] = useState<string | null>(null);
