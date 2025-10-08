@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import { createSafeMarkup } from "@/utils/sanitizer";
 
 // بيانات تجريبية للمقال
 const articleData = {
@@ -122,7 +123,7 @@ const recommendedDoctors = [
 const relatedArticles = [
   {
     id: 2,
-    title: "كيفية اختيار فرشاة الأسنان المناسبة",
+    title: "كيفية اختيار فرشاة الأسنان المن��سبة",
     excerpt: "دليل شامل لاختيار فرشاة الأسنان التي تناسب احتياجاتك",
     readTime: "3 دقائق",
     image: "/placeholder.svg",
