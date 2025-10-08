@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import { createSafeMarkup } from "@/utils/sanitizer";
 
 // بيانات تجريبية للمقال
 const articleData = {
@@ -299,7 +300,7 @@ export default function ArticleDetail() {
               أطباء وعيادات نوصي بهم
             </h2>
             <p className="text-gray-600">
-              اختر من أفضل أطباء الأسنان في منطقتك للحصول على أفضل رعاية
+              اخت�� من أفضل أطباء الأسنان في منطقتك للحصول على أفضل رعاية
             </p>
           </div>
 
