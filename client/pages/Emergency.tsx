@@ -146,7 +146,7 @@ export default function Emergency() {
             <div className="flex flex-row flex-wrap justify-center items-start gap-6">
               {emergencyServices.map(service => {
               const Icon = service.icon;
-              return <div key={service.id} className={cn("bg-white rounded-2xl shadow-lg p-6 border transition-all hover:shadow-xl", selectedService === service.id && "ring-2 ring-red-500")}>
+              const mapping: Record<string,string> = {"dental-emergency": "/emergency/dental", "pain-management": "/emergency/pain-management", "oral-surgery": "/emergency/dental"}; const target = mapping[service.id] || "/emergency"; return <div key={service.id} onClick={() => navigate(target)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(target); }} className={cn("bg-white rounded-2xl shadow-lg p-6 border transition-all hover:shadow-xl cursor-pointer focus:outline-none", selectedService === service.id && "ring-2 ring-red-500")}>
                     <div className="text-center">
                       <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4", service.color === "red" && "bg-red-100", service.color === "orange" && "bg-orange-100", service.color === "blue" && "bg-blue-100")}>
                         <Icon className={cn("w-8 h-8", service.color === "red" && "text-red-600", service.color === "orange" && "text-orange-600", service.color === "blue" && "text-blue-600")} />
