@@ -41,7 +41,7 @@ const articleData = {
         <li>تسوس الأسنان</li>
         <li>التهاب اللثة</li>
         <li>رائحة الفم الكريهة</li>
-        <li>فقدان الأسنان في المراحل المتقدمة</li>
+        <li>فقدان الأسنان في المر��حل المتقدمة</li>
       </ul>
 
       <h2 class="text-2xl font-bold mb-4 mt-8">الخطوات الأساسية للعناية اليومية</h2>
@@ -123,7 +123,7 @@ const recommendedDoctors = [
 const relatedArticles = [
   {
     id: 2,
-    title: "كيفية اختيار فرشاة الأسنان المن��سبة",
+    title: "كيفية اختيار فرشاة الأسنان المناسبة",
     excerpt: "دليل شامل لاختيار فرشاة الأسنان التي تناسب احتياجاتك",
     readTime: "3 دقائق",
     image: "/placeholder.svg",
@@ -237,9 +237,9 @@ export default function ArticleDetail() {
 
 
             {/* Article Content */}
-            <div 
+            <div
               className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: require("@/utils/sanitizer").sanitizeHtml(articleData.content) }}
+              dangerouslySetInnerHTML={createSafeMarkup(articleData.content)}
             />
 
             {/* Tags */}
