@@ -179,15 +179,6 @@ export default function Emergency() {
             </div>
           </div>
 
-          {/* Quick Sub-navigation */}
-          <div className="mb-6 -mx-1">
-            <div className="flex flex-row flex-wrap justify-center items-start gap-2 overflow-x-auto snap-x snap-mandatory px-1">
-              <Link to="/emergency/first-aid" className="snap-start whitespace-nowrap px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-medium hover:bg-orange-200">دليل الإسعافات الأولية</Link>
-              <Link to="/emergency/hospitals" className="snap-start whitespace-nowrap px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium hover:bg-blue-200">المستشفيات القريبة</Link>
-              <Link to="/emergency/pain-management" className="snap-start whitespace-nowrap px-4 py-2 rounded-full bg-red-100 text-red-700 text-sm font-medium hover:bg-red-200">إدارة الألم</Link>
-              <Link to="/emergency/dental" className="snap-start whitespace-nowrap px-4 py-2 rounded-full bg-amber-100 text-amber-700 text-sm font-medium hover:bg-amber-200">طوارئ الأسنان</Link>
-            </div>
-          </div>
 
           {/* Nearby Hospitals */}
           <div className="mb-12">
@@ -212,7 +203,7 @@ export default function Emergency() {
                 <ul className="space-y-2 text-blue-100">
                   <li>• اشطف فمك بالماء الدافئ</li>
                   <li>• استخدم خيط الأس��ان لإزال�� أي طعام</li>
-                  <li>• خذ مسكن للألم حسب التوجيهات</li>
+                  <li>• خذ مسك�� للألم حسب التوجيهات</li>
                   <li>• تجنب وضع الأسبرين على اللثة</li>
                 </ul>
               </div>
@@ -239,7 +230,7 @@ export default function Emergency() {
               </div>
 
               <p className="text-gray-600 mb-6">
-                تعلم كيفية التعامل مع الحالات الطارئة الشائعة قبل وصول الإسعاف
+                تعلم كيفية التعامل مع الحالات الط��رئة الشائعة قبل وصول الإسعاف
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
