@@ -237,9 +237,9 @@ export default function ArticleDetail() {
 
 
             {/* Article Content */}
-            <div 
+            <div
               className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: require("@/utils/sanitizer").sanitizeHtml(articleData.content) }}
+              dangerouslySetInnerHTML={createSafeMarkup(articleData.content)}
             />
 
             {/* Tags */}
@@ -300,7 +300,7 @@ export default function ArticleDetail() {
               أطباء وعيادات نوصي بهم
             </h2>
             <p className="text-gray-600">
-              اخت�� من أفضل أطباء الأسنان في منطقتك للحصول على أفضل رعاية
+              اختر من أفضل أطباء الأسنان في منطقتك للحصول على أفضل رعاية
             </p>
           </div>
 
