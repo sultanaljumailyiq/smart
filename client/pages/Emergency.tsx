@@ -166,12 +166,6 @@ export default function Emergency() {
 
                         
 
-                        <button type="button" onClick={(e) => e.stopPropagation()} className={cn("block w-full py-3 px-4 rounded-xl font-medium text-white transition-colors", service.color === "red" && "bg-red-600", service.color === "orange" && "bg-orange-600", service.color === "blue" && "bg-blue-600")}>
-                          <div className="flex items-center justify-center gap-2">
-                            <Phone className="w-4 h-4" />
-                            <span>دخول القسم</span>
-                          </div>
-                        </button>
                       </div>
                     </div>
                   </div>;
@@ -210,7 +204,7 @@ export default function Emergency() {
               <div>
                 <h3 className="font-bold mb-3">في حالة إصابة الفم:</h3>
                 <ul className="space-y-2 text-blue-100">
-                  <li>• اشطف بالماء البارد</li>
+                  <li>• اشط�� بالماء البارد</li>
                   <li>• اضغط بقطعة قماش نظيفة</li>
                   <li>• ضع ثلج على المنطقة المصابة</li>
                   <li>• اطلب المساعدة الطبية فوراً</li>
