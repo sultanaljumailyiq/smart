@@ -7,7 +7,7 @@ import UnifiedPlaceCard from "@/components/UnifiedPlaceCard";
 const emergencyServices = [{
   id: "dental-emergency",
   title: "طوارئ الأسنان",
-  description: "آلام الأسنان الحادة والطوارئ العاجلة",
+  description: "آلام الأسنان الحادة والطوارئ ��لعاجلة",
   icon: Heart,
   phone: "0790-123-4567",
   available: true,
@@ -166,12 +166,12 @@ export default function Emergency() {
 
                         
 
-                        <a href={`tel:${service.phone}`} className={cn("block w-full py-3 px-4 rounded-xl font-medium text-white transition-colors", service.color === "red" && "bg-red-600 hover:bg-red-700", service.color === "orange" && "bg-orange-600 hover:bg-orange-700", service.color === "blue" && "bg-blue-600 hover:bg-blue-700")}>
+                        <button type="button" onClick={(e) => e.stopPropagation()} className={cn("block w-full py-3 px-4 rounded-xl font-medium text-white transition-colors", service.color === "red" && "bg-red-600", service.color === "orange" && "bg-orange-600", service.color === "blue" && "bg-blue-600")}>
                           <div className="flex items-center justify-center gap-2">
                             <Phone className="w-4 h-4" />
-                            <span>اتصال فوري</span>
+                            <span>دخول القسم</span>
                           </div>
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>;
