@@ -7,21 +7,12 @@ import UnifiedPlaceCard from "@/components/UnifiedPlaceCard";
 const emergencyServices = [{
   id: "dental-emergency",
   title: "طوارئ الأسنان",
-  description: "آلام الأ��نان الحادة والطوارئ الط��ية",
+  description: "آلام الأسنان الحادة والطوارئ العاجلة",
   icon: Heart,
   phone: "0790-123-4567",
   available: true,
   responseTime: "15-30 دقيقة",
   color: "red"
-}, {
-  id: "oral-surgery",
-  title: "جراحة الفم الطارئة",
-  description: "إصابات الفم والفكين",
-  icon: Shield,
-  phone: "0790-123-4568",
-  available: true,
-  responseTime: "10-20 دقيقة",
-  color: "orange"
 }, {
   id: "pain-management",
   title: "إدارة الألم",
@@ -29,7 +20,7 @@ const emergencyServices = [{
   icon: Activity,
   phone: "0790-123-4569",
   available: true,
-  responseTime: "5-15 دقيق��",
+  responseTime: "5-15 دقيقة",
   color: "blue"
 }];
 const nearbyHospitals = [{
@@ -88,7 +79,7 @@ const firstAidScenarios = [{
   path: "/emergency/first-aid"
 }, {
   id: "unconscious",
-  title: "فقدان الوعي",
+  title: "فقد��ن الوعي",
   icon: Users,
   urgency: "critical",
   description: "عدم الاستجابة للأصوات",
