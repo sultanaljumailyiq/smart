@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import { createSafeMarkup } from "@/utils/sanitizer";
 
 // بيانات تجريبية للمقال
 const articleData = {
@@ -40,7 +41,7 @@ const articleData = {
         <li>تسوس الأسنان</li>
         <li>التهاب اللثة</li>
         <li>رائحة الفم الكريهة</li>
-        <li>فقدان الأسنان في المراحل المتقدمة</li>
+        <li>فقدان الأسنان في المر��حل المتقدمة</li>
       </ul>
 
       <h2 class="text-2xl font-bold mb-4 mt-8">الخطوات الأساسية للعناية اليومية</h2>
@@ -236,9 +237,9 @@ export default function ArticleDetail() {
 
 
             {/* Article Content */}
-            <div 
+            <div
               className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: require("@/utils/sanitizer").sanitizeHtml(articleData.content) }}
+              dangerouslySetInnerHTML={createSafeMarkup(articleData.content)}
             />
 
             {/* Tags */}

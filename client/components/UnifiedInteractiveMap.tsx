@@ -62,7 +62,7 @@ const medicalServices: MedicalService[] = [
     services: ["زراعة الأسنان", "تبييض الأسنان", "تقويم الأسنان", "علاج العصب"],
     openHours: "8:00 ص - 8:00 م",
     certification: true,
-    doctor: "د. أحمد الرحمة",
+    doctor: "د. أحمد الرحم��",
     specialties: ["جراحة الفم والفكين", "زراعة الأسنان", "التجميل"],
     amenities: ["موقف سيارات", "واي فاي مجاني", "دفع إلكتروني", "مكيف هواء"],
     priceRange: "100 - 500 ألف دينار",
@@ -122,11 +122,15 @@ const medicalServices: MedicalService[] = [
 interface UnifiedInteractiveMapProps {
   title?: string;
   description?: string;
+  city?: string;
+  onlyEmergency?: boolean;
 }
 
 export default function UnifiedInteractiveMap({
   title = "عيادات الأسنان القريبة منك",
   description = "اعثر على أفضل عيادات الأسنان واحجز موعدك بسهولة",
+  city,
+  onlyEmergency,
 }: UnifiedInteractiveMapProps) {
   const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState<MedicalService | null>(
@@ -146,7 +150,12 @@ export default function UnifiedInteractiveMap({
         s.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     const matchesType = filterType === "all" || service.type === filterType;
-    return matchesSearch && matchesType;
+    const matchesCity =
+      !city ||
+      service.address.toLowerCase().includes(city.toLowerCase()) ||
+      service.name.toLowerCase().includes(city.toLowerCase());
+    const matchesEmergency = !onlyEmergency || !!service.emergencyPhone || service.services.some((s) => s.includes("طوارئ"));
+    return matchesSearch && matchesType && matchesCity && matchesEmergency;
   });
 
   const handleMarkerClick = (service: MedicalService) => {
@@ -193,7 +202,7 @@ export default function UnifiedInteractiveMap({
 
   const serviceTypes = [
     { value: "all", label: "جميع الخدمات" },
-    { value: "عيادة أسنان", label: "عيادات الأسنان" },
+    { value: "عيادة أسنا��", label: "عيادات الأسنان" },
     { value: "مركز طبي", label: "المراكز الطبية" },
     { value: "طوارئ", label: "الطوارئ" },
   ];

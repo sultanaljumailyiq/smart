@@ -1,7 +1,9 @@
 import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { createServer } from "./server";
+// Lazily import the local express server inside the plugin to avoid initializing
+// server-side modules (and database connections) during Vite config evaluation.
+// This prevents startup failures when DATABASE_URL is not set.
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
@@ -38,7 +40,10 @@ function expressPlugin(): Plugin {
   return {
     name: "express-plugin",
     apply: "serve", // Only apply during development (serve mode)
-    configureServer(server) {
+    async configureServer(server) {
+      // Import the server lazily so that database initialization (which requires
+      // DATABASE_URL) does not happen during Vite config bundling.
+      const { createServer } = await import("./server");
       const app = createServer();
 
       // Mount Express app and let it pass through non-API routes to Vite

@@ -34,7 +34,21 @@ const hospitals = [
   },
 ];
 
+import { useState } from "react";
+import UnifiedInteractiveMap from "@/components/UnifiedInteractiveMap";
+
 export default function EmergencyHospitals() {
+  const [city, setCity] = useState<string>("بغداد");
+  const [onlyEmergency, setOnlyEmergency] = useState<boolean>(true);
+
+  const cities = ["بغداد", "البصرة", "نينوى", "أربيل", "النجف", "بابل", "صلاح الدين"];
+
+  const filtered = hospitals.filter((h) => {
+    const matchCity = !city || h.address.includes(city) || h.name.includes(city);
+    const matchEmergency = !onlyEmergency || h.hasEmergency;
+    return matchCity && matchEmergency;
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
       <div className="bg-white border-b py-4">
@@ -54,8 +68,28 @@ export default function EmergencyHospitals() {
           <h1 className="text-2xl font-bold text-gray-900">المستشفيات القريبة للطوارئ</h1>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-2 px-2 pb-2 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
-          {hospitals.map((h, i) => (
+        {/* Filters */}
+        <div className="flex items-center gap-3 mb-6">
+          <select value={city} onChange={(e) => setCity(e.target.value)} className="px-4 py-2 border rounded-xl bg-white">
+            {cities.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={onlyEmergency} onChange={(e) => setOnlyEmergency(e.target.checked)} />
+            عرض المستشفيات التي تقدم خدمات الطوارئ فقط
+          </label>
+        </div>
+
+        {/* Interactive map filtered by city and emergency */}
+        <div className="mb-6">
+          <UnifiedInteractiveMap title="خريطة المستشفيات الطارئة" description={`عرض المستشفيات في ${city}`} city={city} onlyEmergency={onlyEmergency} />
+        </div>
+
+        {/* Hospital list with applied filters */}
+        <div className="grid gap-4 md:grid-cols-3">
+          {filtered.map((h, i) => (
             <UnifiedPlaceCard
               key={i}
               name={h.name}

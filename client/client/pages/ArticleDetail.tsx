@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import { createSafeMarkup } from "@/utils/sanitizer";
 
 // بيانات تجريبية للمقال
 const articleData = {
@@ -236,9 +237,9 @@ export default function ArticleDetail() {
 
 
             {/* Article Content */}
-            <div 
+            <div
               className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: require("@/utils/sanitizer").sanitizeHtml(articleData.content) }}
+              dangerouslySetInnerHTML={createSafeMarkup(articleData.content)}
             />
 
             {/* Tags */}
